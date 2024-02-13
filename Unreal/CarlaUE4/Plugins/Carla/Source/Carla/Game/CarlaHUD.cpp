@@ -53,3 +53,11 @@ void ACarlaHUD::AddHUDString(const FString Str, const FVector Location, const FC
   HUDString Obj { Str, Location, Color, Now + LifeTime };
   StringList.Add(std::move(Obj));
 }
+
+void ACarlaHUD::AddHUDLine(const FVector Begin, const FVector End, 
+    const float Thickness, const FColor Color, double LifeTime)
+{
+  double Now = FPlatformTime::Seconds();
+  HUDLine Obj { Begin, End, Color, Now + LifeTime };
+  LineList.Add(std::move(Obj));
+}

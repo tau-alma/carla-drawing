@@ -62,7 +62,13 @@ namespace rpc {
       MSGPACK_DEFINE_ARRAY(location, text, draw_shadow);
     };
 
-    boost::variant2::variant<Point, Line, Arrow, Box, String> primitive;
+    struct HUDLine : Line;
+    struct HUDBox : Box;
+    struct HUDArrow : Arrow;
+    struct HUDPoint : Point;
+
+    boost::variant2::variant<Point, Line, Arrow, Box, String, 
+      HUDPoint, HUDLine, HUDArrow, HUDBox> primitive;
 
     Color color = {255u, 0u, 0u};
 
