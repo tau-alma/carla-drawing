@@ -81,15 +81,15 @@ namespace client {
     DrawShape(_episode, string, color, life_time, persistent_lines);
   }
 
-  void DebugHelper::HUD::DrawLine(
+  void DebugHelper::DrawHUDLine(
       const geom::Location &begin,
       const geom::Location &end,
-      float thickness = 1.0f,
-      Color color = Color{225u, 0u, 0u},
-      float life_time = -1.0f,
-      bool presistent_lines = true) {
+      float thickness,
+      Color color,
+      float life_time,
+      bool persistent_lines) {
     Shape::HUDLine line{begin, end, thickness};
-    DrawShape(_episode, the_box, color, life_time, persistent_lines);
+    DrawShape(_episode, line, color, life_time, persistent_lines);
   }
 
 } // namespace client

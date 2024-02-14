@@ -58,6 +58,6 @@ void ACarlaHUD::AddHUDLine(const FVector Begin, const FVector End,
     const float Thickness, const FColor Color, double LifeTime)
 {
   double Now = FPlatformTime::Seconds();
-  HUDLine Obj { Begin, End, Color, Now + LifeTime };
+  HUDLine Obj { Begin, End, Thickness, Color, Now + LifeTime };
   LineList.Add(std::move(Obj));
 }

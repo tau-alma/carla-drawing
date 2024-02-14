@@ -62,13 +62,33 @@ namespace rpc {
       MSGPACK_DEFINE_ARRAY(location, text, draw_shadow);
     };
 
-    struct HUDLine : Line;
-    struct HUDBox : Box;
-    struct HUDArrow : Arrow;
-    struct HUDPoint : Point;
+    // TODO: make this better! Maybe use inheritance or something. No point defining everything twice.
+    struct HUDLine {
+      geom::Location begin;
+      geom::Location end;
+      float thickness;
+      MSGPACK_DEFINE_ARRAY(begin, end, thickness);
+    };
+    struct HUDBox {
+      geom::BoundingBox box;
+      geom::Rotation rotation;
+      float thickness;
+      MSGPACK_DEFINE_ARRAY(box, rotation, thickness);
+    };
+    struct HUDArrow {
+      Line line;
+      float arrow_size;
+      MSGPACK_DEFINE_ARRAY(line, arrow_size);
+    };
+    struct HUDPoint {
+      geom::Location location;
+      float size;
+      MSGPACK_DEFINE_ARRAY(location, size);
+    };
 
-    boost::variant2::variant<Point, Line, Arrow, Box, String, 
-      HUDPoint, HUDLine, HUDArrow, HUDBox> primitive;
+    // boost::variant2::variant<Point, Line, Arrow, Box, String, 
+    //   HUDPoint, HUDLine, HUDArrow, HUDBox> primitive;
+    boost::variant2::variant<Point, Line, Arrow, Box, String, HUDLine> primitive;
 
     Color color = {255u, 0u, 0u};
 

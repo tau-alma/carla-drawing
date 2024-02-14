@@ -397,5 +397,14 @@ void export_world() {
          arg("color")=cc::DebugHelper::Color(255u, 0u, 0u),
          arg("life_time")=-1.0f,
          arg("persistent_lines")=true))
+    .def("draw_hud_line", &cc::DebugHelper::DrawHUDLine,
+        (arg("begin"),
+         arg("end"),
+         arg("thickness")=0.1f,
+         arg("color")=cc::DebugHelper::Color(255u, 0u, 0u),
+         arg("life_time")=-1.0f,
+         arg("persistent_lines")=true))
   ;
+  // scope HUD = class_<cc::DebugHelper>(
+
 }

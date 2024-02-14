@@ -209,6 +209,32 @@ struct FShapeVisitor
     Hud->AddHUDString(carla::rpc::ToFString(Str.text), Location, Color.Quantize(), LifeTime);
   }
 
+  void operator()(const Shape::HUDLine &Line) const {
+    auto PlayerController = UGameplayStatics::GetPlayerController(World, 0);
+    if (PlayerController == nullptr)
+    {
+      UE_LOG(LogCarla, Error, TEXT("Can't find player controller!"));
+      return;
+    }
+    FVector Begin = FVector(Line.begin);
+    FVector End = FVector(Line.end);
+    ALargeMapManager* LargeMap = UCarlaStatics::GetLargeMapManager(World);
+    if (LargeMap)
+    {
+      Begin = LargeMap->GlobalToLocalLocation(Begin);
+      End = LargeMap->GlobalToLocalLocation(End);
+    }
+    ACarlaHUD *Hud = Cast<ACarlaHUD>(PlayerController->GetHUD());
+    Hud->AddHUDLine(Begin, End, Line.thickness, Color.Quantize(), LifeTime);
+    // World->PersistentLineBatcher->DrawLine(
+    //     Begin,
+    //     End,
+    //     Color,
+    //     DepthPriority,
+    //     1e2f * Line.thickness,
+    //     LifeTime);
+  }
+
 private:
 
   UWorld *World;

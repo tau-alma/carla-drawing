@@ -63,17 +63,13 @@ namespace client {
         float life_time = -1.0f,
         bool persistent_lines = true);
 
-    class HUD {
-    public:
-
-        void DrawLine(
-            const geom::Location &begin,
-            const geom::Location &end,
-            float thickness = 1.0f,
-            Color color = Color{225u, 0u, 0u},
-            float life_time = -1.0f,
-            bool presistent_lines = true);
-    };
+    void DrawHUDLine(
+        const geom::Location &begin,
+        const geom::Location &end,
+        float thickness = 1.0f,
+        Color color = Color{225u, 0u, 0u},
+        float life_time = -1.0f,
+        bool presistent_lines = true);
 
   private:
 
